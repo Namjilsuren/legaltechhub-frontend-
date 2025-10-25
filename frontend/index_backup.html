@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LegalTechHub LLC</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="logo-container" id="landing">
+    <div class="roof"></div>
+    <div class="letters">LT</div>
+    <div class="underline"></div>
+    <h1 class="brand-name">LegalTechHub</h1>
+    <p class="tagline">Law × Tech × Trust</p>
+    <a href="#" class="enter-btn" id="enter-btn">Enter Platform</a>
+  </div>
+
+  <script>
+  const API = "http://127.0.0.1:5001";
+  const $messages = document.getElementById("messages");
+  const $status = document.getElementById("status");
+  const $sender = document.getElementById("sender");
+  const $content = document.getElementById("content");
+  const $roomSel = document.getElementById("roomSel");
+  const $meName = document.getElementById("meName");
+
+  let lastRenderCount = 0;
+
+  function currentRoom() {
+    return ($roomSel.value || "general").trim().toLowerCase();
+  }
+
+  async function loadMessages(scrollToEnd=false) {
+    try {
+      const room = currentRoom();
+      const res = await fetch(`${API}/api/messages?room=${encodeURIComponent(room)}`);
+      const data = await res.json();
+
+      $messages.innerHTML = "";
+      const me = ($sender.value || "Guest").trim();
+      $meName.textContent = me || "Guest";
+
+      data.slice(-200).forEach(m => {
+        const wrap = document.createElement("div");
+        wrap.className = "msg " + (m.sender === me ? "me" : "other");
+        wrap.innerHTML = `
+          <div>${escapeHTML(m.content)}</div>
+          <div class="meta">${escapeHTML(m.sender)} • ${m.sent_at ? new Date(m.sent_at).toLocaleString() : ""}</div>
+        `;
+        $messages.appendChild(wrap);
+      });
+
+      if (scrollToEnd || data.length !== lastRenderCount) {
+        $messages.scrollTop = $messages.scrollHeight;
+        lastRenderCount = data.length;
+      }
+      $status.textContent = "холбогдсон";
+    } catch (e) {
+      $status.textContent = "❌ сервер холбогдсонгүй";
+    }
+  }
+
+  document.getElementById("sendBtn").addEventListener("click", async () => {
+    const sender = ($sender.value || "Guest").trim();
+    const content = ($content.value || "").trim();
+    if (!content) { alert("Мессеж хоосон байна."); return; }
+
+    await fetch(`${API}/api/messages`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ sender, content, room: currentRoom() })
+    });
+
+    $content.value = "";
+    loadMessages(true);
+  });
+
+  // Өрөө солиход мессежүүдийг шинээр татна
+  $roomSel.addEventListener("change", () => loadMessages(true));
+
+  setInterval(loadMessages, 2000);
+  function escapeHTML(s=""){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+  loadMessages(true);
+</script>
+</body>
+</html>

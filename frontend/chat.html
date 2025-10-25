@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>💬 LegalTechHub — Хуульчдын чат</title>
+  <link rel="stylesheet" href="./chat.css"/>
+</head>
+<body class="theme-general">
+  <div class="chat-wrap">
+    <header class="bar">
+      <div class="brand">💬 <b>LegalTechHub</b> — Хуульчдын чат</div>
+      <div id="status" class="status ok">🟢 Статус: холбогдсон</div>
+    </header>
+
+    <section class="controls-top">
+      <label class="inline">
+        👤 Та:
+        <input id="sender" type="text" placeholder="Таны нэр…" />
+      </label>
+      <label class="inline room">
+        ⚖️ Өрөө:
+        <select id="roomSel">
+          <option value="general">General</option>
+          <option value="enhjin">Б. Энхжин — Эрүүгийн эрх зүй</option>
+          <option value="ariunbold">Д. Ариунболд — Компанийн эрх зүй</option>
+          <option value="uranchimeg">Ц. Уранчимэг — Оюуны өмч</option>
+          <option value="ganzorig">О. Ганзориг — Татвар, аудит</option>
+        </select>
+      </label>
+    </section>
+
+    <main id="messages" class="messages"></main>
+
+    <section class="controls-bottom">
+      <input id="content" type="text" placeholder="Мессежээ бичнэ үү…" />
+      <button id="sendBtn" class="btn">Илгээх</button>
+    </section>
+  </div>
+
+  <script src="./chat.js"></script>
+</body>
+</html>

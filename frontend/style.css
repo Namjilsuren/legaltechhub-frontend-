@@ -1,0 +1,91 @@
+/* ===== LegalTechHub — LightEdition (Law-sector friendly) ===== */
+:root{
+  --bg:#0b0f14;         /* deep navy */
+  --panel:#0f1520;
+  --ink:#e6eef5;        /* readable text */
+  --muted:#94a3b8;
+  --teal:#21d0c3;       /* trust/teal */
+  --teal-2:#11b6a8;
+  --accent:#60a5fa;     /* legal blue */
+  --glow: 0 0 18px rgba(33,208,195,.4), 0 0 42px rgba(33,208,195,.28);
+}
+
+*{ box-sizing:border-box }
+html,body{ height:100% }
+body{
+  margin:0;
+  background: radial-gradient(900px 900px at 12% -8%, rgba(96,165,250,.08), transparent 40%),
+              radial-gradient(1200px 1200px at 88% 110%, rgba(33,208,195,.08), transparent 40%),
+              var(--bg);
+  color: var(--ink);
+  font: 15px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Arial, sans-serif;
+  display:flex; align-items:center; justify-content:center;
+}
+
+.wrap{
+  text-align:center;
+  padding: 32px 20px 96px;
+}
+
+.mark{ position:relative; width:220px; margin:0 auto 8px; }
+.roof{
+  width:140px; height:78px; margin:0 auto 14px;
+  border-top:4px solid var(--teal);
+  border-left:4px solid var(--teal);
+  border-right:4px solid var(--teal);
+  border-radius:4px;
+  box-shadow: var(--glow);
+  animation: roofGlow 3.2s ease-in-out infinite;
+}
+.letters{
+  font-weight:800; font-size:88px; letter-spacing:1px;
+  color: var(--teal);
+  text-shadow: 0 0 22px rgba(33,208,195,.6);
+  margin-top:-8px;
+}
+.underline{
+  width:72px; height:4px; margin:16px auto 6px; border-radius:2px;
+  background: var(--teal);
+  box-shadow: var(--glow);
+  animation: pulse 2.6s ease-in-out infinite;
+}
+
+.brand{
+  margin:4px 0 2px;
+  font-size:28px; font-weight:800;
+  color:#cfeaff; text-shadow:0 0 12px rgba(96,165,250,.32);
+}
+.tag{ color: var(--muted); margin:4px 0 18px; }
+
+.loader{
+  width:44px; height:44px; margin:18px auto 10px;
+  border:4px solid rgba(255,255,255,.06);
+  border-top:4px solid var(--teal);
+  border-radius:50%;
+  animation: spin 1s linear infinite;
+}
+.desc{ color:#c8d4e0; opacity:.92 }
+
+.foot{
+  position:fixed; left:0; right:0; bottom:16px;
+  text-align:center; color:#8aa3b8; font-size:.95rem;
+}
+.sig{ color:var(--teal); font-weight:700; text-shadow:0 0 10px rgba(33,208,195,.45); }
+
+/* Animations */
+@keyframes spin { to{ transform: rotate(360deg) } }
+@keyframes pulse {
+  0%,100% { transform: scaleX(.8); opacity:.6 }
+  50%     { transform: scaleX(1); opacity:1 }
+}
+@keyframes roofGlow {
+  0%,100% { box-shadow: 0 0 14px rgba(33,208,195,.5) }
+  50%     { box-shadow: 0 0 34px rgba(33,208,195,.85), 0 0 70px rgba(96,165,250,.35) }
+}
+
+/* Small screens */
+@media (max-width:480px){
+  .letters{ font-size:74px }
+  .brand{ font-size:24px }
+  .desc{ font-size:.95rem }
+}

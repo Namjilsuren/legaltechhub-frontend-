@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://legaltechhub.mn/sitemap.xml

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LegalTechHub Neon Logo</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle at center, #0d1117 0%, #05070a 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .lt-logo {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      color: cyan;
+      font-family: "Poppins", sans-serif;
+      font-weight: 800;
+      font-size: 72px;
+      text-align: center;
+      text-shadow: 0 0 25px cyan, 0 0 50px cyan, 0 0 100px cyan;
+      filter: drop-shadow(0 0 30px cyan);
+      animation: glowPulse 5s ease-in-out infinite;
+    }
+
+    .letters {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+    }
+
+    /* Roof structure */
+    .roof {
+      position: absolute;
+      top: 25px;
+      left: 50%;
+      width: 100px;
+      height: 60px;
+      border-top: 4px solid cyan;
+      border-left: 4px solid cyan;
+      border-right: 4px solid cyan;
+      transform: translateX(-50%) rotate(0deg);
+      border-radius: 3px;
+      box-shadow: 0 0 25px cyan, 0 0 50px cyan;
+      animation: roofGlow 3s ease-in-out infinite;
+    }
+
+    /* Scale lines below */
+    .line-bottom {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      width: 60px;
+      height: 4px;
+      background: cyan;
+      border-radius: 2px;
+      box-shadow: 0 0 15px cyan, 0 0 40px cyan;
+      transform: translateX(-50%);
+      animation: linePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { transform: scale(1); text-shadow: 0 0 25px cyan, 0 0 50px cyan; }
+      50% { transform: scale(1.05); text-shadow: 0 0 60px cyan, 0 0 120px cyan; }
+    }
+
+    @keyframes linePulse {
+      0%, 100% { opacity: 0.4; transform: translateX(-50%) scaleX(0.6); }
+      50% { opacity: 1; transform: translateX(-50%) scaleX(1); }
+    }
+
+    @keyframes roofGlow {
+      0%, 100% { opacity: 0.6; box-shadow: 0 0 15px cyan; }
+      50% { opacity: 1; box-shadow: 0 0 50px cyan, 0 0 80px cyan; }
+    }
+  </style>
+</head>
+<body>
+  <div class="lt-logo">
+    <div class="roof"></div>
+    <div class="letters">LT</div>
+    <div class="line-bottom"></div>
+  </div>
+</body>
+</html>

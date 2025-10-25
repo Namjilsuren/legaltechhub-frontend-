@@ -1,0 +1,90 @@
+/* ===== NSN Vibe Glow — Dark + Cyan ===== */
+:root{
+  --bg:#0d1117;
+  --panel:#141a22;
+  --panel-2:#0f141a;
+  --text:#e6edf3;
+  --muted:#9aa5b1;
+  --cyan:#00c8ff;
+  --cyan-2:#00a8e0;
+  --ok:#00ff88;
+  --red:#ff5a65;
+}
+
+/* room-ийн сэдэвчилсэн өнгө */
+.theme-general { --room: var(--cyan); }
+.theme-enhjin  { --room: #ff5a65; }      /* Эрүүгийн — улаан glow */
+.theme-ariunbold{ --room: #4db6ff; }     /* Компанийн — цэнхэр */
+.theme-uranchimeg{ --room: #9d7bff; }    /* Оюуны өмч — нил ягаан */
+.theme-ganzorig{ --room: #25d0a4; }      /* Татвар — ногоон */
+
+*{ box-sizing:border-box }
+html,body{ height:100% }
+body{
+  margin:0; background: radial-gradient(80rem 80rem at 10% -10%, rgba(0,200,255,.12), transparent 40%) , var(--bg);
+  color:var(--text); font: 14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+  display:flex; align-items:center; justify-content:center;
+}
+
+.chat-wrap{
+  width: min(680px, 92vw);
+  height: min(88vh, 760px);
+  background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)) , var(--panel);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.35), 0 0 80px color-mix(in oklab, var(--room) 25%, transparent);
+  padding: 18px;
+  display:flex; flex-direction:column; gap:12px;
+}
+
+/* Top bar */
+.bar{ display:flex; align-items:center; justify-content:space-between; }
+.brand{ color: var(--cyan); font-size:16px; text-shadow:0 0 18px rgba(0,200,255,.3); }
+.status{ font-size:13px; color:var(--muted); }
+.status.ok{ color: var(--ok); }
+.status.bad{ color: var(--red); }
+
+/* Controls */
+.controls-top{ display:flex; gap:10px; flex-wrap:wrap; }
+.inline{ display:flex; align-items:center; gap:8px; }
+.inline input, .inline select{
+  background: var(--panel-2); border:1px solid rgba(255,255,255,.06);
+  color:var(--text); border-radius:8px; padding:10px 12px; outline:none;
+}
+.inline select:focus, .inline input:focus{ border-color: var(--room); box-shadow:0 0 0 3px color-mix(in oklab, var(--room) 25%, transparent); }
+
+/* Messages */
+.messages{
+  flex:1; overflow:auto; padding:12px; border-radius:12px;
+  background: var(--panel-2); border:1px solid rgba(255,255,255,.06);
+  box-shadow: inset 0 0 30px rgba(0,0,0,.25);
+}
+.msg{ 
+  max-width: 78%; padding:10px 12px; margin:8px 0; border-radius:10px; 
+  background: rgba(255,255,255,.06); animation: pop .18s ease-out;
+  position:relative;
+}
+.msg.me{ margin-left:auto; background: color-mix(in oklab, var(--room) 24%, rgba(255,255,255,.06)); }
+.msg.bot{ background: rgba(255,255,255,.08); }
+.meta{ font-size:11px; color:var(--muted); margin-top:4px; }
+@keyframes pop{ from { transform: translateY(6px); opacity:.0 } to { transform:none; opacity:1 } }
+
+/* Bottom controls */
+.controls-bottom{ display:flex; gap:10px; }
+.controls-bottom input{
+  flex:1; background: var(--panel-2); color:var(--text);
+  border:1px solid rgba(255,255,255,.06); border-radius:10px; padding:12px 14px;
+}
+.btn{
+  background: var(--room); color:#001219; border:none; font-weight:700; 
+  border-radius:10px; padding:12px 16px; cursor:pointer;
+  box-shadow:0 6px 24px color-mix(in oklab, var(--room) 35%, transparent);
+  transition: transform .08s ease, filter .2s ease;
+}
+.btn:hover{ filter: brightness(.95) }
+.btn:active{ transform: translateY(1px) }
+
+/* scrollbar */
+.messages::-webkit-scrollbar{ height:8px; width:8px }
+.messages::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.12); border-radius:8px }
+.messages::-webkit-scrollbar-track{ background: transparent }

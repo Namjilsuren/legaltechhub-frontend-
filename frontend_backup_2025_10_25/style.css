@@ -1,0 +1,107 @@
+/* ---------- LegalTechHub Landing Style ---------- */
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle at center, #0d1117 0%, #05070a 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  color: cyan;
+  overflow: hidden;
+}
+
+.logo-container {
+  position: relative;
+  text-align: center;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.roof {
+  position: relative;
+  width: 120px;
+  height: 70px;
+  border-top: 4px solid cyan;
+  border-left: 4px solid cyan;
+  border-right: 4px solid cyan;
+  margin: 0 auto 15px;
+  box-shadow: 0 0 25px cyan, 0 0 60px cyan;
+  transition: all 1.2s ease;
+}
+
+.roof.pulse {
+  box-shadow: 0 0 45px cyan, 0 0 90px cyan;
+  opacity: 0.9;
+}
+
+.letters {
+  font-size: 90px;
+  font-weight: 800;
+  text-shadow: 0 0 30px cyan, 0 0 70px cyan;
+  margin-top: -10px;
+  animation: glow 4s infinite ease-in-out;
+}
+
+.underline {
+  width: 70px;
+  height: 4px;
+  background: cyan;
+  margin: 15px auto;
+  border-radius: 2px;
+  box-shadow: 0 0 20px cyan, 0 0 60px cyan;
+  transition: all 1s ease;
+}
+
+.underline.pulse {
+  width: 80px;
+  box-shadow: 0 0 40px cyan, 0 0 80px cyan;
+}
+
+.brand-name {
+  font-size: 28px;
+  margin: 20px 0 10px;
+  font-weight: 700;
+  text-shadow: 0 0 15px cyan, 0 0 40px cyan;
+}
+
+.tagline {
+  font-size: 14px;
+  color: #80ffff;
+  margin-bottom: 35px;
+  text-shadow: 0 0 8px cyan;
+}
+
+.enter-btn {
+  text-decoration: none;
+  color: #0d1117;
+  background: cyan;
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-weight: 600;
+  box-shadow: 0 0 20px cyan, 0 0 40px cyan;
+  transition: all 0.3s ease-in-out;
+}
+
+.enter-btn:hover {
+  background: #0d1117;
+  color: cyan;
+  box-shadow: 0 0 30px cyan, 0 0 80px cyan;
+  border: 2px solid cyan;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 20px cyan, 0 0 40px cyan; }
+  50% { text-shadow: 0 0 60px cyan, 0 0 120px cyan; }
+}
+/* ---------- Page Transition ---------- */
+.fade-out {
+  opacity: 0;
+  transform: scale(0.98);
+  transition: all 1.5s ease-in-out;
+  filter: blur(3px);
+}

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LegalTechHub | Our Lawyers</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background-color: #0d1117;
+      color: #fff;
+      font-family: "Inter", sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    h2 {
+      color: #4cc9f0;
+      margin-top: 30px;
+    }
+
+    p {
+      color: #a0a0a0;
+    }
+
+    select {
+      background: #161b22;
+      color: white;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 6px 10px;
+      margin: 10px 0 25px;
+    }
+
+    .lawyers-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .lawyer-card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 20px;
+      width: 200px;
+      transition: all 0.3s;
+    }
+
+    .lawyer-card:hover {
+      border-color: #4cc9f0;
+      transform: translateY(-5px);
+    }
+
+    .lawyer-card img {
+      width: 40px;
+      margin-bottom: 10px;
+      opacity: 0.9;
+    }
+
+    .chat-btn {
+      background: #238636;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .chat-btn:hover {
+      background: #2ea043;
+    }
+
+    /* Chat Box */
+    .chat-container {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      width: 80%;
+      max-width: 600px;
+      margin: 0 auto 30px;
+      padding: 15px;
+      text-align: left;
+    }
+
+    .chat-box {
+      height: 250px;
+      overflow-y: auto;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 10px;
+      background: #0d1117;
+      margin-bottom: 10px;
+    }
+
+    .message {
+      margin: 5px 0;
+      padding: 8px 10px;
+      border-radius: 6px;
+      display: inline-block;
+      max-width: 80%;
+      line-height: 1.4;
+    }
+
+    .message.user {
+      background: #238636;
+      color: white;
+      align-self: flex-end;
+    }
+
+    .message.bot {
+      background: #1f6feb;
+      color: white;
+      align-self: flex-start;
+    }
+
+    .quick-replies button {
+      background: none;
+      color: #58a6ff;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 4px 10px;
+      margin: 3px;
+      cursor: pointer;
+    }
+
+    .quick-replies button:hover {
+      border-color: #58a6ff;
+    }
+
+    .input-area {
+      display: flex;
+      gap: 6px;
+    }
+
+    #user-input {
+      flex: 1;
+      background: #0d1117;
+      color: white;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 6px;
+    }
+
+    #send-btn {
+      background: #4cc9f0;
+      border: none;
+      color: black;
+      border-radius: 6px;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+
+    footer {
+      color: #8b949e;
+      font-size: 0.8em;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="lawyers-section">
+    <h2 id="page-title">Our Lawyers</h2>
+    <p id="page-subtitle">Connect instantly with our trusted experts</p>
+
+    <select id="language-select">
+      <option value="en">🇬🇧 English</option>
+      <option value="mn" selected>🇲🇳 Mongolian</option>
+      <option value="ru">🇷🇺 Russian</option>
+    </select>
+
+    <div class="lawyers-grid">
+      <div class="lawyer-card">
+        <img src="img/lawyer1.png" alt="@Lawyer" />
+        <h3>Б. Энхжин</h3>
+        <p>Эрүүгийн эрх зүй</p>
+        <button class="chat-btn">Chat</button>
+      </div>
+
+      <div class="lawyer-card">
+        <img src="img/lawyer2.png" alt="@Lawyer" />
+        <h3>Д. Ариунболд</h3>
+        <p>Компанийн эрх зүй</p>
+        <button class="chat-btn">Chat</button>
+      </div>
+
+      <div class="lawyer-card">
+        <img src="img/lawyer3.png" alt="@Lawyer" />
+        <h3>Ц. Уранчимэг</h3>
+        <p>Оюуны өмч</p>
+        <button class="chat-btn">Chat</button>
+      </div>
+
+      <div class="lawyer-card">
+        <img src="img/lawyer4.png" alt="@Lawyer" />
+        <h3>О. Ганзориг</h3>
+        <p>Татвар ба аудит</p>
+        <button class="chat-btn">Chat</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="chat-container">
+    <h3 id="assistant-title">Хуулийн туслах</h3>
+
+    <div class="chat-box" id="chat-box">
+      <div class="message bot">Hi there! 👋 Select a lawyer above or ask me about legal services.</div>
+    </div>
+
+    <div class="quick-replies">
+      <button id="quick1" data-text="How are you?">How are you?</button>
+      <button id="quick2" data-text="Legal consultation">Legal consultation</button>
+      <button id="quick3" data-text="Fee inquiry">Fee inquiry</button>
+    </div>
+
+    <div class="input-area">
+      <input id="user-input" type="text" placeholder="Type your message..." />
+      <button id="send-btn">Send</button>
+    </div>
+  </section>
+
+  <footer id="footer-text">Law × Tech × Trust</footer>
+
+  <!-- Scripts -->
+  <script src="lawyers.js"></script>
+  <script src="lang.js"></script>
+</body>
+</html>

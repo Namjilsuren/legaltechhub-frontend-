@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LegalTechHub — Notes Feed</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #0b0e13;
+      color: #e0e0e0;
+      padding: 40px;
+    }
+    h1 {
+      color: #00e0ff;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .notes-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .note-card {
+      background: #161b22;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+    .note-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+    }
+    .note-title {
+      color: #00e0ff;
+      font-size: 1.3em;
+      margin-bottom: 10px;
+    }
+    .note-content {
+      color: #dcdcdc;
+      font-size: 1em;
+      line-height: 1.4;
+    }
+    .note-date {
+      margin-top: 10px;
+      font-size: 0.85em;
+      color: #888;
+      text-align: right;
+    }
+    .add-note {
+      max-width: 500px;
+      margin: 0 auto 40px;
+      background: #11161c;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+    }
+    .add-note input,
+    .add-note textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0 10px;
+      border: none;
+      border-radius: 6px;
+      background: #1b222c;
+      color: #e0e0e0;
+    }
+    .add-note button {
+      background: #00e0ff;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .add-note button:hover {
+      background: #00a0cc;
+    }
+  </style>
+</head>
+<body>
+  <h1>📜 LegalTechHub — Notes Feed</h1>
+
+  <div class="add-note">
+    <h3>🖋 Шинэ тэмдэглэл нэмэх</h3>
+    <input type="text" id="title" placeholder="Гарчиг" />
+    <textarea id="content" rows="3" placeholder="Агуулга"></textarea>
+    <button id="addBtn">Нэмэх</button>
+  </div>
+
+  <div class="notes-container" id="notes"></div>
+
+  <script>
+  const apiURL = "http://127.0.0.1:5001";
+  const container = document.getElementById("notes");
+
+  async function loadNotes() {
+    try {
+      const res = await fetch(`${apiURL}/api/notes`);
+      const data = await res.json();
+      container.innerHTML = "";
+      if (data.length === 0) {
+        container.innerHTML = "<p>🕯 Одоогоор тэмдэглэл алга байна.</p>";
+        return;
+      }
+      data.reverse().forEach((note) => {
+        const card = document.createElement("div");
+        card.classList.add("note-card");
+        card.innerHTML = `
+          <div class="note-title">${note.title}</div>
+          <div class="note-content">${note.content}</div>
+          <div class="note-date">${new Date(note.created_at).toLocaleString()}</div>
+        `;
+        container.appendChild(card);
+      });
+    } catch (err) {
+      container.innerHTML = '<p style="color:red;">❌ Сервер холбогдсонгүй...</p>';
+    }
+  }
+
+  // ✏️ Шинэ тэмдэглэл илгээх
+  document.getElementById("addBtn").addEventListener("click", async () => {
+    const title = document.getElementById("title").value.trim();
+    const content = document.getElementById("content").value.trim();
+    if (!title || !content) {
+      alert("Гарчиг болон агуулга хоёуланг бөглөнө үү!");
+      return;
+    }
+    await fetch(`${apiURL}/api/notes/new`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title, content }),
+    });
+    document.getElementById("title").value = "";
+    document.getElementById("content").value = "";
+    await loadNotes(); // шууд шинэчилнэ
+  });
+
+  // ⏱ 10 секунд тутам автоматаар шинэчлэх
+  setInterval(loadNotes, 10000);
+
+  // 🔁 Эхний ачаалалт
+  loadNotes();
+</script>
+</body>
+</html>

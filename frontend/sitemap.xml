@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://legaltechhub.mn/</loc>
+    <lastmod>2025-10-25</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://legaltechhub.mn/lawyers.html</loc>
+    <lastmod>2025-10-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://legaltechhub.mn/chat.html</loc>
+    <lastmod>2025-10-25</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <!-- NSN Vibe Lab → Future dynamic pages will auto-register -->
+</urlset>
